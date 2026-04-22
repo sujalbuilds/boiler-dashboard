@@ -37,7 +37,7 @@ st.markdown("""
 
 st.sidebar.title("⚙️ Controls")
 DATA_PATH = os.path.join(os.path.dirname(__file__), "boiler_data.csv")
-uploaded = DATA_PATH if os.path.exists(DATA_PATH) else st.sidebar.file_uploader("Upload boiler CSV", type=["csv"])
+uploaded = "boiler_data.csv"
 st.sidebar.markdown("---")
 contamination = st.sidebar.slider("Isolation Forest contamination", 0.01, 0.15, 0.05, 0.01)
 n_clusters    = st.sidebar.slider("Operating Modes (K)", 2, 7, 4)
