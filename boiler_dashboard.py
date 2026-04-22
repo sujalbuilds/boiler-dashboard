@@ -54,7 +54,7 @@ def load_data(file):
         df[time_col[0]] = pd.to_datetime(df[time_col[0]], errors='coerce')
         df = df.set_index(time_col[0]).sort_index()
     df = df.select_dtypes(include=[np.number])
-    df = df.interpolate(method='linear').fillna(method='bfill').fillna(method='ffill')
+    df = df.interpolate(method='linear').bfill().ffill()
     return df
 
 @st.cache_data
