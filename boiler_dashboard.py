@@ -58,8 +58,7 @@ def load_data(file):
     return df
 
 @st.cache_data
-def run_models(df_json, contamination, n_clusters, window_size, failure_thresh):
-    df = pd.read_json(df_json)
+def run_models(df, contamination, n_clusters, window_size, failure_thresh):
     scaler = StandardScaler()
     X = scaler.fit_transform(df)
 
@@ -162,7 +161,7 @@ n_show = st.sidebar.slider("Show last N samples", 1000, len(df), min(20000, len(
 df_view = df.iloc[-n_show:]
 
 with st.spinner("Running ML models..."):
-    results = run_models(df.to_json(), contamination, n_clusters, window_size, failure_thresh)
+    results = run_models(df, contamination, n_clusters, window_size, failure_thresh)
 
 iso_scores     = np.array(results["iso_scores"])
 iso_anomaly    = np.array(results["iso_anomaly"])
